@@ -1,0 +1,18 @@
+body{
+	color: rgb(13,110,253);
+}
+
+.table{
+	background-color: rgba(13,110,253,0.2);
+	color: rgb(13,110,253);
+}
+
+.custom-shape-divider-top-1621503625 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    /*background-color: blue;*/
+}
