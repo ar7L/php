@@ -58,7 +58,7 @@
   				<label for="exampleFormControlInput" class="form-label">Add New Category</label>
   				<input name = "cat_name" type="text" class="form-control" id="exampleFormControlInput" placeholder="Category Name" required="required">
 
-  				<textarea name = "cat_desc" class="form-control my-3" name="" id="" cols="12" rows="3"></textarea>
+  				<textarea name = "cat_desc" class="form-control my-3" name="" id="" cols="12" rows="3" placeholder="Add category Description"></textarea>
   				<input name="add_cat" type = "submit" class="btn btn-primary">
 
   			</div>
