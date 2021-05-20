@@ -1,7 +1,9 @@
 body{
 	color: rgb(13,110,253);
 }
-
+::placeholder{
+	color: rgb(13,110,253,0.4)!important;
+}
 .table{
 	background-color: rgba(13,110,253,0.2);
 	color: rgb(13,110,253);
