@@ -74,7 +74,7 @@
   		    	$p_conn = mysqli_query($conn , $sql_p);
 
   		    	if($p_conn){
-  		          header("location: index.php");
+  		          header("location: https://php-assignment-1.herokuapp.com/");
   		    		
   		    	}else{
   		    		echo "oh! no";
@@ -113,7 +113,7 @@
 			      <td><?php echo $name?></td>
 			      <td><?php echo $desc?></td>
 			      <td>
-			      	<a href="" class="btn btn-success">Edit</a>
+			      	<a href="index.php?update_id=<?php echo $id?>" class="btn btn-success">Edit</a>
 			      	<a onClick="return confirm('Are you sleeping??');" href="index.php?delete_id=<?php echo $id?>" class="btn btn-danger">Delete</a>
 			      </td>
 			  </tr>
@@ -136,15 +136,80 @@
   	   	$sql_d = "DELETE FROM category WHERE c_id = '$del_id'";
   	   	$d_conn = mysqli_query($conn,$sql_d);
   	   	if($d_conn){
-  	   		header("location: index.php");
+  	   		header("location: https://php-assignment-1.herokuapp.com/");
   	   	}else{
   	   		echo "Something went wrong!!";
   	   	}
   	   }
 
   	?>
+    <?php
+
+      if(isset($_GET['update_id'])){
+        $update_id = $_GET['update_id'];
+
+        $u_sql = "SELECT * FROM category WHERE c_id = '$update_id'";
+        $u_conn = mysqli_query($conn , $u_sql);
+
+        while($row = mysqli_fetch_assoc($u_conn)){
+          $c_name = $row['c_name'];
+          $c_desc = $row['c_desc'];
+        }
+        ?>
+            <div class="container">
+      <div class="row mt-5">
+          <div class="col-md-6 col-sm-12 animate__animated animate__slideInLeft">
+          <form method = "POST">
+            <div class="mb-3">  
+
+          <label for="exampleFormControlInput" class="form-label">Update Category</label>
+          <input name = "cat_name" type="text" class="form-control" id="exampleFormControlInput" value="<?php echo $c_name?>" required="required">
+
+          <textarea name = "cat_desc" class="form-control my-3" name="" id="" cols="12" rows="3">
+            <?php echo $c_desc?>
+          </textarea>
+
+          <input name="upd_cat" type = "submit" class="btn btn-primary">
+
+        </div>
+      </form>
+      </div>
+      </div>
+    </div>
+    <?php
+      }
+    ?>
+
+    <?php 
+
+       if(isset($_POST['upd_cat'])){
+        $c_name = $_POST['cat_name'];
+        $c_desc = $_POST['cat_desc'];
+        $upd_sql = "UPDATE category SET c_name = '$c_name' , c_desc = '$c_desc' WHERE c_id = '$update_id'";
+        $upd_conn = mysqli_query($conn , $upd_sql);
+        if($upd_conn){
+          header("Location: https://php-assignment-1.herokuapp.com/");
+        }else{
+          echo "Something went wrong";
+        }
+       }
+
+    ?>
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $('document').ready(function()
+{
+    $('textarea').each(function(){
+            $(this).val($(this).val().trim());
+        }
+    );
+});
+    </script>
   </body>
 </html>
